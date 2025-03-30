@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>T-Shirt Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #009688;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #004d40;
+            padding: 10px 20px;
+            align-items: center;
+            color: white;
+        }
+        nav input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .container {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            height: auto;
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-card h3 {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #009688;
+        }
+        .product-card p {
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+        }
+        .product-card span {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+        .btn {
+            background-color: #004d40;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #00695c;
+        }
+        .cart {
+            background-color: #f4f4f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .cart h2 {
+            color: #009688;
+        }
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+        .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .cart-items li span {
+            font-weight: bold;
+        }
+        .cart-items button {
+            background-color: #e57373;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cart-items button:hover {
+            background-color: #d32f2f;
+        }
+        footer {
+            background-color: #009688;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        T-Shirt Store
+    </header>
+    <nav>
+        <div>Welcome to the best online T-Shirt shop!</div>
+        <input type="text" id="search-bar" placeholder="Search T-Shirts...">
+    </nav>
+
+    <div class="container" id="product-list">
+        
+    </div>
+
+    <div class="cart" id="cart">
+        <h2>Shopping Cart</h2>
+        <ul class="cart-items" id="cart-items">
+            
+        </ul>
+        <h3>Total: ₹<span id="total-amount">0</span></h3>
+    </div>
+
+    <footer>
+        &copy; 2025 T-Shirt Store. All Rights Reserved.
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: 'Graphic T-Shirt', price: 499, image: 'https://media-uk.landmarkshops.in/cdn-cgi/image/h=831,w=615,q=85,fit=cover/max-new/1000012796397-Green-DARKGREEN-1000012796397_01-2100.jpg' },
+            { id: 2, name: 'Plain White T-Shirt', price: 399, image: 'https://cdn.shopify.com/s/files/1/0870/3920/products/whitevee_b367369a-b7cb-4f10-a1ee-c93cc1ac6465_620x.jpg?v=1540612772' },
+            { id: 3, name: 'Striped T-Shirt', price: 599, image: 'https://media-uk.landmarkshops.in/cdn-cgi/image/h=831,w=615,q=85,fit=cover/max-new/1000012597400-Blue-NAVY-1000012597400_01-2100.jpg' },
+            { id: 4, name: 'V-Neck T-Shirt', price: 699, image: 'https://www.jockey.in/cdn/shop/files/2726_BSGRN_0105_S123_JKY_1.webp?v=1725619833&width=560' },
+            { id: 5, name: 'Polo T-Shirt', price: 799, image: 'https://cdnc.lystit.com/photos/2012/04/13/polo-ralph-lauren-white-miami-polo-shirt-product-4-3219583-310149366.jpeg' },
+            { id: 6, name: 'Hooded T-Shirt', price: 899, image: 'https://media-us.landmarkshops.in/cdn-cgi/image/h=831,w=615,q=85,fit=cover/max-new/1000013270501-Pink-PINK-1000013270501_01-2100.jpg' },
+            { id: 7, name: 'Ombre Hooded T-Shirt', price: 999, image: 'https://media-us.landmarkshops.in/cdn-cgi/image/h=831,w=615,q=85,fit=cover/max-new/1000013589069-Red-RED-1000013589069_01-2100.jpg' }
+        ];
+
+        const cart = [];
+
+        const productList = document.getElementById('product-list');
+        const cartItems = document.getElementById('cart-items');
+        const totalAmount = document.getElementById('total-amount');
+
+        function renderProducts() {
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Price: ₹${product.price}</p>
+                    <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const cartItem = cart.find(item => item.id === productId);
+            if (cartItem) {
+                cartItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            renderCart();
+        }
+
+        function removeFromCart(productId) {
+            const cartIndex = cart.findIndex(item => item.id === productId);
+            if (cartIndex > -1) {
+                cart.splice(cartIndex, 1);
+                renderCart();
+            }
+        }
+
+        function renderCart() {
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                const cartItemElement = document.createElement('li');
+                cartItemElement.innerHTML = `
+                    ${item.name} (x${item.quantity}) - ₹${item.price * item.quantity}
+                    <button onclick="removeFromCart(${item.id})">Remove</button>
+                `;
+                cartItems.appendChild(cartItemElement);
+            });
+            totalAmount.textContent = total;
+        }
+
+        renderProducts();
+    </script>
+
+</body>
+</html>
