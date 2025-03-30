@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Recipes</title>
+    <style>
+    
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #ff5722;
+            color: white;
+            text-align: center;
+            padding: 0.5em;
+            font-size: 1.6em;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .landing {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .landing h2 {
+            font-size: 2em;
+            color: #ff5722;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .landing p {
+            font-size: 1.1em;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            padding-bottom: 20px;
+        }
+        .landing button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .landing button:hover {
+            background-color: #e64a19;
+            transform: translateY(-5px);
+        }
+        .recipe-form {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .recipe-form input, .recipe-form textarea, .recipe-form button {
+            padding: 6px;
+            margin: 5px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 0.9em;
+        }
+        .recipe-form input {
+            width: 200px;
+            height: 55px;
+            padding-left: 20px;
+        }
+        .recipe-form textarea {
+            width: 300px;
+            height: 55px;
+            resize: none;
+            padding-left: 30px;
+            padding-top: 10px;
+            font-size: 20px;
+        }
+        .recipe-form button {
+            background-color: #ff5722;
+            width: 150px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 10px;
+        }
+        .recipe-form button:hover {
+            background-color: #e64a19;
+            transform: scale(1.05);
+        }
+        .recipe-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 2fr));
+            gap: 20px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .recipe-item {
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .recipe-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        @media (max-width: 460px) {
+    .recipe-item img {
+        width: 100%; 
+        height: auto; 
+        object-fit: contain; 
+        border-radius: 15px; 
+    }
+    
+}
+
+
+        .recipe-item h3 {
+            margin: 10px 0;
+            color: #ff5722;
+        }
+        .recipe-item p {
+            color: gray;
+            max-height: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .recipe-item button {
+            background-color: #ff5722;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .recipe-item button:hover {
+            background-color: #e64a19;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff5722;
+            color: white;
+            font-size: 0.9em;
+            margin-top: auto;
+        }
+        .footer:hover {
+            background-color: #e64a19;
+        }
+        @media screen and (max-width: 768px) {
+            .landing h2 { font-size: 1.8em; }
+            .landing p { font-size: 1em; }
+            .recipe-form textarea { width: 150px; }
+            .recipe-item img { height: 150px; }
+        }
+        @media screen and (max-width: 480px) {
+            .landing h2 { font-size: 1.5em; }
+            .landing p { font-size: 0.9em; }
+            .recipe-form textarea { width: 120px; }
+            .recipe-item img { height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="header">
+        Delicious Recipes
+    </div>
+
+    
+    <section class="landing">
+        <h2>Welcome to Delicious Recipes!</h2>
+        <p>Share and explore amazing recipes from around the world. Add new recipes or browse through our collection.</p>
+        <button onclick="document.getElementById('recipeName').focus()">Add a Recipe</button>
+    </section>
+
+    
+    <div class="recipe-form">
+        <input type="text" id="recipeName" placeholder="Recipe Name">
+        <input type="text" id="recipeImage" placeholder="Image URL">
+        <textarea id="recipeDescription" placeholder="Description"></textarea>
+        <button onclick="addRecipe()">Add Recipe</button>
+    </div>
+
+    
+    <div class="recipe-list" id="recipeList">
+    
+    </div>
+
+    
+    <div class="footer">
+        © 2025 Delicious Recipes. All Rights Reserved.
+    </div>
+
+    <script>
+       
+        const recipeList = document.getElementById('recipeList');
+        const recipes = [
+            {
+                name: 'Pasta Alfredo',
+                img: 'https://www.rosaviinijaruoka.fi/wp-content/uploads/2021/04/pasta-alfredo.jpg',
+                description: 'Pasta with creamy Alfredo sauce.'
+            },
+            {
+                name: 'Chocolate Cake',
+                img: 'https://th.bing.com/th/id/OIP.6YxdPvLPe6-i58WkW3TCdwHaHa?rs=1&pid=ImgDetMain',
+                description: 'Rich and moist chocolate cake.'
+            },
+            {
+                name: 'Chicken Biryani',
+                img: 'https://www.licious.in/blog/wp-content/uploads/2022/06/chicken-biryani-awadhi-01.jpg',
+                description: 'Spiced chicken and fragrant rice.'
+            },
+            {
+                name: 'Grilled Cheese Sandwich',
+                img: 'https://cdn2.tmbi.com/TOH/Images/Photos/37/1200x1200/Super-Grilled-Cheese-Sandwiches_exps39652_TOHCS2321916B06_14_3b_RMS.jpg',
+                description: 'Golden, grilled sandwich with melted cheese.'
+            },
+            {
+                name: 'Caesar Salad',
+                img: 'https://th.bing.com/th/id/OIP.DY58iLB-zjsLLBkqwphnvgAAAA?w=474&h=712&rs=1&pid=ImgDetMain',
+                description: 'Crisp lettuce with Caesar dressing.'
+            },
+            {
+                name: 'Vegetable Stir Fry',
+                img: 'https://bing.com/th?id=OSK.afe0b0732f41eaf93c37a27c224c434d',
+                description: 'Mixed vegetables sautéed in savory sauce.'
+            },
+            {
+                name: ' mixed sauce pasta',
+                img: 'https://bing.com/th?id=OSK.6f5609e0df3a7c73ab005de78964da3b',
+                description: 'Mixed vegetables sautéed sauce pasta.'
+            },
+            {
+                name: ' fried rice',
+                img: 'https://bing.com/th?id=OSK.15d661c2e0b87a42660a86c20ae9675a',
+                description: 'Mixed vegetables fired rice.'
+            }
+            
+        ];
+
+        recipes.forEach(recipe => {
+            addRecipeToDOM(recipe);
+        });
+
+        
+        function addRecipe() {
+            const name = document.getElementById('recipeName').value;
+            const img = document.getElementById('recipeImage').value;
+            const description = document.getElementById('recipeDescription').value;
+
+            if (!name || !img || !description) {
+                alert('Please fill in all the details.');
+                return;
+            }
+
+            const recipe = { name, img, description };
+            addRecipeToDOM(recipe);
+            alert('Recipe added successfully!');
+            
+            document.getElementById('recipeName').value = '';
+            document.getElementById('recipeImage').value = '';
+            document.getElementById('recipeDescription').value = '';
+        }
+
+        function addRecipeToDOM(recipe) {
+            const recipeDiv = document.createElement('div');
+            recipeDiv.classList.add('recipe-item');
+            
+            
+            const uniqueId = 'recipe-' + Math.random().toString(36).substr(2, 9);
+            recipeDiv.id = uniqueId;
+
+            recipeDiv.innerHTML = `
+                <img src="${recipe.img}" alt="${recipe.name}">
+                <h3>${recipe.name}</h3>
+                <p>${recipe.description}</p>
+                <button onclick="removeRecipe('${uniqueId}')">Remove Recipe</button>
+            `;
+            recipeList.appendChild(recipeDiv);
+        }
+
+        function removeRecipe(recipeId) {
+            const recipeToRemove = document.getElementById(recipeId);
+            recipeList.removeChild(recipeToRemove);
+            alert("Are you okay to remove this recipe");
+        }
+        
+    </script>
+
+</body>
+</html>

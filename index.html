@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Exo 2", serif;
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: #000000;
+            padding: 5px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1;
+        }
+        section {
+            padding: 80px 0;
+        }
+        .navbar-brand {
+            font-size: 35px;
+            color: aqua;
+            font-weight: 600;
+            margin-left: 30px;
+        }
+        .navbar-nav .nav-link {
+            font-size: 20px;
+        }
+        .navbar-nav .nav-link :hover{
+          color: aqua;
+          }
+        .hero {
+            height: 100vh;
+            background-color: #000000;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+             color: #ffffffb6; 
+        }
+        .hero .landing-img{
+            width: 500px;
+            height: 450px;
+            background-color: aqua;
+            border-radius: 100%;
+            background: url(https://img.freepik.com/premium-photo/portrait-successful-programmer-game-developer-coder-guy-uses-computer-laptop-work-game-design-hacker-boy-generative-ai-cyber-gamer_117038-7597.jpg?w=900);
+            background-position: center;
+            background-size: cover;
+        }
+        .bg-txt{
+            background-color: #07080a83;
+            border-radius: 20px;
+            
+
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            animation: fadeIn 7s ease-in-out infinite;
+            padding: 20px 20px ;
+        }
+        
+        
+        @keyframes fadeIn {
+            0% { opacity: 0.2; }
+            50% { opacity: 0.5; color: aqua; }
+            100% { opacity: 1; }
+        }
+        @media (max-width: 460px) {
+            .hero h1 {
+                font-size: 25px;
+            }
+            .hero p{
+                font-size: 12px;
+            }
+            .hero #home {
+                height: 500px;
+                width: 100%;
+                margin-top: 70px;
+                
+            }
+            .navbar-brand{
+                color: #28a745;
+            }
+            .hero .landing-img{
+                width: 250px;
+                height: 250px;
+            }
+           
+
+        }
+        #about {
+            background-color: #000000;
+            padding: 60px 0;
+            
+        }
+        #about h2 {
+            font-size: 50px;
+            font-weight: 900;
+            color: aqua;
+            margin-top: 30px;
+        }
+        #about p {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffffb6;
+        }
+        #about ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #about ul li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+        }
+        #about span{
+            color: aqua;
+        }
+        #about h4{
+            font-size: 30px;
+            font-weight: 700;
+            color: aqua;
+            
+        }
+        #about h5{
+            color: #ffffffb6;
+            font-weight: 800;
+        }
+        @media (max-width: 460px){
+            #about h2{
+                font-size: 25px;
+                font-weight: 600;
+                margin-top: 30px;
+            }
+            #about p {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffffb6;
+            
+        }
+        #about h4{
+            font-size: 20px;
+            font-weight: 500;
+            color: aqua;
+            
+        }
+        #about h5{
+            color: #ffffffb6;
+            font-weight: 700;
+        }
+        #about span{
+            color: aqua;
+        }
+        }
+        #skills {
+            background-color: #000;
+            color: #fff;
+            
+        }
+        #skills h2 {
+            font-size: 40px;
+            font-weight: 800;
+            color: aqua;
+        }
+        #skills ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #skills ul li {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffffb6;
+        }
+        .projects-section {
+    background-color: black;
+    padding: 60px 0;
+    color: white;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.project-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    background-color: #1a1a1a;
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0px 15px 0 #ffffff70;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-image img {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.project-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.project-info h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.project-info p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    background-color: rgb(38, 184, 184);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #1a334b;
+}
+@media (max-width: 1024px) {
+    .project-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 35px;
+    }
+
+    .project-info h3 {
+        font-size: 22px;
+    }
+
+    .project-info p {
+        font-size: 15px;
+    }
+}
+        
+        @media (max-width:480px){
+            #skills ul li {
+                font-size: 13px;
+            }
+
+        }
+
+        #contact{
+        background-color: #000000;
+        height: 60vh;
+        }
+        #contact h2{
+           font-size: 45px;
+           font-weight: 800;
+           color: aqua;
+           letter-spacing: 2px;
+           padding-bottom: 30px;
+        }
+        #contact p{
+           font-size: larger;
+           font-weight: 600;
+           color: #ffffffb6;
+           letter-spacing: 2px;
+           padding-bottom: 30px;
+        }
+        i{
+        font-size: 47px;
+        color: #ffffffb6;
+        margin-left: 20px;
+        }
+        i:hover{
+         color:aqua;
+        }
+        @media (max-width:480px){
+            #contact h2{
+                font-size: 25px;
+            }
+            #contact p{
+                font-size: 13px;
+            }
+            #contact i{
+                font-size: 35px;
+            }
+            #contact  i:hover{
+         color:aqua;
+        }
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">Portfolio</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="landing-img"></div>
+        <div class="bg-txt">
+            <h1>Welcome, I'm a Full Stack Developer</h1>
+            <p>Building end-to-end solutions with efficiency and creativity.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container text-center">
+            <h2>About Me</h2>
+            <p>I am <span>kuldeep  </span>. I am a passionate Full Stack Developer skilled in building web applications from frontend to backend. My expertise lies in creating responsive, user-friendly websites and managing databases for seamless data handling.<br><br>Highly motivated and goal oriented final year bca student with strong foundation in web Development.I have skilled in both frontend and backend technologies and database.<br>Strong problem solving skill , team collaboration and continuous learning mindset.</p><br><br>
+            <h4>Internship</h4>
+            
+                <h5>WordPress developer || NIVY </h5>
+                <p>
+                --Worked as WordPress intern , contributing to the design , development and management of website for clients <br>
+                --Team leader , led a team of developer in creating an education and learning platform , similar to Udemy using WordPress.<br>
+                --Optimized website perfomance ensuring fast load time and a responsive design for various devices.
+            </p><br><br>
+            <h4>Certifications</h4>
+            
+                <p>-- FULL STACK DEVELOPMENT Certificate , Tca Training and development - july 2024 || Noida </p>
+                <p>-- C & C++ Certificate , Tca Training and development - july 2024 || Noida </p>
+                <p>-- WORDPRESS DEVELOPER INTERN Certificate , NIVY  || Billion Dreams United- February 2025  </p>
+               
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container text-center">
+            <h2>Skills</h2>
+            <ul>
+                <li>FRONTEND  TECHNOLOGIES  --- HTML5 , CSS3 REACT JS , BOOTSTRAP , JQUERY , MATERIAL UI</li>
+                <li>BACKEND  TECHNOLOGIES --- PYTHON , DJANGO FRAMEWORK , NODE JS , EXPRESS JS</li>
+                <li>DATABASE --- MY SQL , MONGO DB </li>
+                <li>PROGRAMMING LANGAUGES --- Python , JAVASCRIPT , C , C++</li>
+                <li>WORDPRESS & CMS --- ELEMENTOR , CUSTOM THEMES</li>
+            </ul>
+        </div>
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2 class="section-title">My Projects</h2>
+                <div class="project-cards">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/Screenshot_30-3-2025_172733_127.0.0.1.jpeg" alt="Project 1">
+                        </div>
+                        <div class="project-info">
+                            <h3>DELICIOUS RECIPES</h3>
+                            <p>Share and explore amazing recipes from around the world.</p>
+                            <a href="projects/delicious-food/index.html" class="btn btn-primary">View Project</a>
+                        </div>
+                    </div>
+        
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://th.bing.com/th/id/OIP.KV21ji472SY-rg--3vnvzAHaEM?rs=1&pid=ImgDetMain" alt="Project 2">
+                        </div>
+                        <div class="project-info">
+                            <h3>CALCULATOR</h3>
+                            <p>>A simple calculator built with JavaScript, HTML, and CSS. It supports basic arithmetic operations.</p>
+                            <a href="projects/calculator/index.html" class="btn btn-primary">View Project</a>
+                        </div>
+                    </div>
+        
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="projects/scratch-kit/dark-street-night-.jpeg" alt="Project 3">
+                        </div>
+                        <div class="project-info">
+                            <h3> IMAGE SCRATCHER</h3>
+                            <p>Reveal hidden images by scratching over the black background using mouse events.</p>
+                            <a href="projects/scratch-kit/index.html" class="btn btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </section>
+
+        <section id="contact">
+            <div class="container text-center">
+                <h2>Contact Me</h2>
+                <p class="fade-in-text">Feel free to reach out for collaborations or just a friendly chat!</p>
+              <div class="icons">
+              <a href="mailto:kuldeepchadhary514@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://wa.me/+917011880331"><i class="fa-brands fa-whatsapp"></i></a>
+                 <a href="https://www.instagram.com/kuldeepsinghjaat_"><i class="fa-brands fa-instagram"></i></a>
+                 <a href="images/Resume.jpg" download><i class="fa-solid fa-file-arrow-down"></i></a>
+              </div>
+            </div>
+        </section>
+    
+
+    <footer>
+        <p>&copy; 2025 Full Stack Developer Portfolio. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
